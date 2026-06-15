@@ -12,8 +12,9 @@ git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm i
 ```
 
 ### For Mac (Terminal)
+This command automatically checks if Homebrew, Git, and Node.js are installed, installs any missing prerequisites, clones the repository, installs dependencies, and configures file permissions:
 ```bash
-git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install && chmod +x run.command
+if ! command -v brew &>/dev/null; then /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && export PATH="/opt/homebrew/bin:$PATH"; fi && if ! command -v git &>/dev/null; then brew install git; fi && if ! command -v node &>/dev/null; then brew install node; fi && git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install && chmod +x run.command
 ```
 
 ---
