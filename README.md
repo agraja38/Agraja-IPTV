@@ -2,6 +2,20 @@
 
 Agraja IPTV Player is a premium, responsive, and easy-to-use application to watch public live TV channels. It features real-time stream status checking, an interactive guide, and a high-performance video player.
 
+## Installation
+
+To download and install the player on your computer, open your Command Prompt or Terminal and run the single-line command below:
+
+### For Windows (Command Prompt or PowerShell)
+```cmd
+git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install
+```
+
+### For Mac (Terminal)
+```bash
+git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install
+```
+
 ---
 
 ## How to Use
