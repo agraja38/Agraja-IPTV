@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# Agraja IPTV Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Agraja IPTV Player is a premium, responsive, and easy-to-use application to watch public live TV channels. It features real-time stream status checking, an interactive guide, and a high-performance video player.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to Use
 
-## React Compiler
+### For Windows Users
+1. Download or extract the project folder to your computer.
+2. Double-click the `run.bat` file in the folder.
+3. The player will open automatically in your default web browser, and you can start watching.
+4. When you want to stop, click the red **Quit** button at the top-right of the screen to close the app and shut down the server.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### For Mac (macOS) Users
+1. Download or extract the project folder to your computer.
+2. Open your Terminal application.
+3. Drag and drop the folder into the Terminal, or type `cd ` followed by the path to the folder and press Enter.
+4. Run the following command to give the launch file permission to run:
+   ```bash
+   chmod +x run.command
+   ```
+5. After doing that once, you can simply double-click the `run.command` file in the folder to launch the player.
+6. The app will open in your web browser. When you are finished, click the red **Quit** button at the top-right of the screen to exit and stop the server.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Credits
+Original IPTV playlist data and channel collections are sourced from the excellent public repository by [iptv-org](https://github.com/iptv-org/iptv).
