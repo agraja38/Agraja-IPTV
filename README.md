@@ -13,7 +13,7 @@ git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm i
 
 ### For Mac (Terminal)
 ```bash
-git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install
+git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install && chmod +x run.command
 ```
 
 ---
