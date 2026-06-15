@@ -12,9 +12,9 @@ git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm i
 ```
 
 ### For Mac (Terminal)
-This command automatically checks if Homebrew, Git, and Node.js are installed, installs any missing prerequisites, clones the repository, installs dependencies, and configures file permissions:
+This command automatically checks if Homebrew, Git, and Node.js are installed, installs any missing prerequisites, clones the repository, installs dependencies, configures file permissions, creates a double-clickable Desktop shortcut named **Agraja_IPTV**, and launches the application:
 ```bash
-if ! command -v brew &>/dev/null; then /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && export PATH="/opt/homebrew/bin:$PATH"; fi && if ! command -v git &>/dev/null; then brew install git; fi && if ! command -v node &>/dev/null; then brew install node; fi && git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install && chmod +x run.command
+if ! command -v brew &>/dev/null; then /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && export PATH="/opt/homebrew/bin:$PATH"; fi && if ! command -v git &>/dev/null; then brew install git; fi && if ! command -v node &>/dev/null; then brew install node; fi && git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install && chmod +x run.command && echo -e "#!/bin/bash\ncd \"$(pwd)\" && ./run.command" > ~/Desktop/Agraja_IPTV.command && chmod +x ~/Desktop/Agraja_IPTV.command && ./run.command
 ```
 
 ---
@@ -22,21 +22,18 @@ if ! command -v brew &>/dev/null; then /bin/bash -c "$(curl -fsSL https://raw.gi
 ## How to Use
 
 ### For Windows Users
-1. Download or extract the project folder to your computer.
-2. Double-click the `run.bat` file in the folder.
-3. The player will open automatically in your default web browser, and you can start watching.
-4. When you want to stop, click the red **Quit** button at the top-right of the screen to close the app and shut down the server.
+1. Double-click the `run.bat` file in the folder.
+2. The player will open automatically in your default web browser.
+3. When you want to stop, click the red **Quit** button at the top-right of the screen to close the app and shut down the server.
 
 ### For Mac (macOS) Users
-1. Download or extract the project folder to your computer.
-2. Open your Terminal application.
-3. Drag and drop the folder into the Terminal, or type `cd ` followed by the path to the folder and press Enter.
-4. Run the following command to give the launch file permission to run:
-   ```bash
-   chmod +x run.command
-   ```
-5. After doing that once, you can simply double-click the `run.command` file in the folder to launch the player.
-6. The app will open in your web browser. When you are finished, click the red **Quit** button at the top-right of the screen to exit and stop the server.
+- **If installed via the one-line command**: Simply double-click the **Agraja_IPTV** shortcut icon on your Desktop.
+- **If downloaded manually**:
+  1. Open your Terminal application.
+  2. Navigate to the extracted folder (e.g. type `cd ` and drag the folder into the terminal).
+  3. Run `chmod +x run.command` to give it launch permission.
+  4. Double-click the `run.command` file inside the folder to launch the player.
+- When you are finished, click the red **Quit** button at the top-right of the screen to exit and stop the server.
 
 ---
 
