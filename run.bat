@@ -6,7 +6,7 @@ echo ==============================================
 echo.
 echo Starting Vite development server...
 cd /d "%~dp0"
-start /b npm run dev
+start /min cmd /c npm run dev
 echo.
 echo Waiting for server to spin up...
 timeout /t 2 /nobreak >nul
