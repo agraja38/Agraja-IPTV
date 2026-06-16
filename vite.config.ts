@@ -156,18 +156,36 @@ export default defineConfig({
               const target = parse(currentUrl);
               const client = target.protocol === 'https:' ? https : http;
 
-              // Copy incoming headers and clean them up
+              // Copy incoming headers defensively (forward critical and custom headers, filter WAF-blocking headers)
               const headers: Record<string, string> = {};
               for (const key of Object.keys(req.headers)) {
-                if (req.headers[key] && !['host', 'origin', 'referer', 'accept-encoding'].includes(key)) {
-                  headers[key] = String(req.headers[key]);
+                const lowerKey = key.toLowerCase();
+                if (
+                  lowerKey === 'host' ||
+                  lowerKey === 'connection' ||
+                  lowerKey === 'accept-encoding' ||
+                  lowerKey.startsWith('sec-')
+                ) {
+                  continue;
+                }
+                const val = req.headers[key];
+                if (val) {
+                  const valStr = String(val);
+                  if (lowerKey === 'referer' || lowerKey === 'origin') {
+                    if (valStr.includes('localhost') || valStr.includes('127.0.0.1')) {
+                      continue;
+                    }
+                  }
+                  headers[key] = valStr;
                 }
               }
 
               headers['host'] = target.host || '';
               headers['accept-encoding'] = 'identity';
-              // Add standard user agent to avoid bot-blocking on some streams
-              headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+              // Add standard user agent to avoid bot-blocking on some streams if not already set
+              if (!headers['user-agent']) {
+                headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+              }
 
               const proxyReq = client.request({
                 hostname: target.hostname,
@@ -312,7 +330,11 @@ export default defineConfig({
                 res.end(`Proxy request failed: ${err.message}`);
               });
 
-              req.pipe(proxyReq);
+              if (req.method === 'GET' || req.method === 'HEAD') {
+                proxyReq.end();
+              } else {
+                req.pipe(proxyReq);
+              }
             } catch (err: any) {
               console.error(`[Proxy General Error for ${currentUrl}]:`, err.message);
               if (res.headersSent) return;
