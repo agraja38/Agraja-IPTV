@@ -4,9 +4,28 @@ echo ==============================================
 echo       AGRAJA IPTV PLAYER LAUNCHER
 echo ==============================================
 echo.
-echo Starting Vite development server...
+
 cd /d "%~dp0"
-start "Agraja IPTV Server" /min cmd /k "npm run dev"
+
+:: Check if node_modules exists, if not run npm install
+if not exist "node_modules\" (
+    echo node_modules folder not found. Installing dependencies...
+    call npm install
+    if errorlevel 1 (
+        echo.
+        echo ERROR: 'npm install' failed. Please make sure Node.js is installed.
+        pause
+        exit
+    )
+)
+
+echo Starting Vite development server...
+if exist "node_modules\vite\bin\vite.js" (
+    start "Agraja IPTV Server" /min cmd /k "node node_modules\vite\bin\vite.js"
+) else (
+    start "Agraja IPTV Server" /min cmd /k "npm run dev"
+)
+
 echo.
 echo Waiting for server to spin up...
 
@@ -30,10 +49,11 @@ if defined ready (
 )
 echo.
 echo Launching browser to IPTV interface...
-start http://localhost:5173
+start http://127.0.0.1:5173
 echo.
 echo App is running successfully.
 echo.
 ping 127.0.0.1 -n 4 >nul
 exit
+
 
