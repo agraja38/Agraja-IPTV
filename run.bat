@@ -7,6 +7,16 @@ echo.
 
 cd /d "%~dp0"
 
+:: Add Node.js to PATH if not already present
+where node >nul 2>nul
+if errorlevel 1 (
+    if exist "C:\Program Files\nodejs\node.exe" (
+        set "PATH=C:\Program Files\nodejs;%PATH%"
+    ) else if exist "C:\Program Files (x86)\nodejs\node.exe" (
+        set "PATH=C:\Program Files (x86)\nodejs;%PATH%"
+    )
+)
+
 :: Check if node_modules exists, if not run npm install
 if not exist "node_modules\" (
     echo node_modules folder not found. Installing dependencies...
@@ -19,11 +29,16 @@ if not exist "node_modules\" (
     )
 )
 
-echo Starting Vite development server...
+:: Terminate any zombie process currently occupying port 5173
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr LISTENING ^| findstr :5173') do (
+    taskkill /f /pid %%a >nul 2>nul
+)
+
+echo Starting Vite development server on 127.0.0.1:5173...
 if exist "node_modules\vite\bin\vite.js" (
-    start "Agraja IPTV Server" /min cmd /k "node node_modules\vite\bin\vite.js"
+    start "Agraja IPTV Server" /min cmd /k "node node_modules\vite\bin\vite.js --host 127.0.0.1 --port 5173 --strictPort"
 ) else (
-    start "Agraja IPTV Server" /min cmd /k "npm run dev"
+    start "Agraja IPTV Server" /min cmd /k "npm run dev -- --host 127.0.0.1 --port 5173 --strictPort"
 )
 
 echo.
@@ -55,5 +70,6 @@ echo App is running successfully.
 echo.
 ping 127.0.0.1 -n 4 >nul
 exit
+
 
 
