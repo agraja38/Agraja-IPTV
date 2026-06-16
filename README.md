@@ -6,9 +6,16 @@ Agraja IPTV Player is a premium, responsive, and easy-to-use application to watc
 
 To download and install the player on your computer, open your Command Prompt or Terminal and run the single-line command below:
 
-### For Windows (Command Prompt or PowerShell)
+### For Windows
+
+**Command Prompt (CMD):**
 ```cmd
 git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm install
+```
+
+**PowerShell:**
+```powershell
+git clone https://github.com/agraja38/Agraja-IPTV.git; cd Agraja-IPTV; npm install
 ```
 
 ### For Mac (Terminal)
