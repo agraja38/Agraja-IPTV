@@ -15,7 +15,7 @@ git clone https://github.com/agraja38/Agraja-IPTV.git && cd Agraja-IPTV && npm i
 
 **PowerShell:**
 ```powershell
-git clone https://github.com/agraja38/Agraja-IPTV.git; cd Agraja-IPTV; npm install
+git clone https://github.com/agraja38/Agraja-IPTV.git; cd Agraja-IPTV; npm.cmd install
 ```
 
 ### For Mac (Terminal)
